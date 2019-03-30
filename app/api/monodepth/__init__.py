@@ -1,0 +1,1 @@
+from app.api.monodepth.api_v1 import monodepth_api_v1
