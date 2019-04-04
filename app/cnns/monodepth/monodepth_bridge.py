@@ -1,5 +1,5 @@
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL']='0'
+os.environ['TF_CPP_MIN_LOG_LEVEL']='3' if (os.getenv('FLASK_CONFIG_TYPE') == 'prod') else '0'
 
 import numpy as np
 import re
