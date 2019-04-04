@@ -21,5 +21,4 @@ def root():
 
 @root_api_v1.route('/nns',methods=['GET'])
 def available_nns():
-    resp = response(200, available_nns_response)
-    return resp
+    return response(200, available_nns_response)
