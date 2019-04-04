@@ -1,6 +1,9 @@
 Flask
 Flask-Cache
 redis
-Pillow
-numpy
 waitress
+numpy==1.16.2
+Pillow==5.4.1
+tensorflow==1.13.1
+matplotlib==3.0.3
+scipy==1.2.1

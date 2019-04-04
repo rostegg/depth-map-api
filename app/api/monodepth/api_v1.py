@@ -11,16 +11,15 @@ from PIL import Image, ImageEnhance
 import numpy as np
 import PIL
 from scipy import misc
-
-AVAILABLE_MODELS = ['kitti','eigen','cityscapes']
+from app.cnns.monodepth.monodepth_bridge import MonodepthBridge as mb
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
-monodepth_api_v1 = Blueprint(name='monodepth_api_v1', import_name=__name__, url_prefix="/api/v1.0/nns/monodepth")
+monodepth_api_v1 = Blueprint(name='monodepth_api_v1', import_name=__name__, url_prefix="/api/v1.0/cnns/monodepth")
 
 @monodepth_api_v1.route('/')
 def root():
-    return response(200, AVAILABLE_MODELS)
+    return response(200, mb.AVAILABLE_MODELS)
 
 @monodepth_api_v1.errorhandler(400)
 def page_not_found(e):
@@ -28,7 +27,7 @@ def page_not_found(e):
 
 @monodepth_api_v1.route('/<model>', methods=['POST'])
 def process_image(model):
-    if model not in AVAILABLE_MODELS:
+    if model not in mb.AVAILABLE_MODELS:
         return response(404, {'message':'Model not found'})
     if 'image' not in request.files:
         return response(400, {'message':'No image part'})
@@ -37,17 +36,17 @@ def process_image(model):
         return response(400, {'message':'No selected image'})
     if image and allowed_extension(image.filename):
         filename = secure_filename(image.filename)
+        #temporary error handler
+        try:
+            img = BytesIO(image.read())
+            img.seek(0)
+
+            mono_bridge = mb(img)
+            depth_map = mono_bridge.generate_depth_map(model)
+        except:
+            return response(500, {'message':'unable to process images'})
         
-        input_image = misc.imread(BytesIO(image.read()))
-        input_image = misc.imresize(input_image, [100, 100], interp='lanczos')
-        
-        im = Image.fromarray(input_image)
-        
-        imgByteArr = BytesIO()
-        im.save(imgByteArr, format='JPEG')
-        imgByteArr.seek(0)
-        
-        return send_file(imgByteArr, mimetype='image/jpeg',as_attachment=True, attachment_filename=filename)
+        return send_file(depth_map, mimetype='image/png',as_attachment=True, attachment_filename=filename)
 
 def allowed_extension(filename):
     return '.' in filename and \

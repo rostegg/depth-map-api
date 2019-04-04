@@ -17,8 +17,8 @@ def page_not_found(e):
 
 @root_api_v1.route('/',methods=['GET'])
 def root():
-    return redirect('/api/v1.0/nns')
+    return redirect('/api/v1.0/cnns')
 
-@root_api_v1.route('/nns',methods=['GET'])
+@root_api_v1.route('/cnns',methods=['GET'])
 def available_nns():
     return response(200, available_nns_response)

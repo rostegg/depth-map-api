@@ -125,3 +125,4 @@ dmypy.json
 
 config.env
 flask-env/
+app/cnns/monodepth/models/*
