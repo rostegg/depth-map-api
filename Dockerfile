@@ -9,4 +9,6 @@ COPY . .
 
 RUN ./get_models_monodepth.sh
 
+EXPOSE 5000
+
 CMD [ "python", "./run.py" ]

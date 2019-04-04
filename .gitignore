@@ -123,6 +123,5 @@ dmypy.json
 
 .vscode/
 
-config.env
 flask-env/
 app/cnns/monodepth/models/*

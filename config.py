@@ -14,8 +14,10 @@ except EnvironmentError:
     print("It seems someone forgot to add config.env file")
 
 class BaseConfig:
-    APP_NAME = os.environ.get('APP_NAME') or 'Flask-Base'
-    SECRET_KEY = os.environ.get('SECRET_KEY') if os.environ.get('SECRET_KEY') else None
+    CACHE_TYPE = os.environ.get('CACHE_TYPE')
+    CACHE_REDIS_HOST = os.environ.get('CACHE_REDIS_HOST')
+    CACHE_REDIS_PORT = os.environ.get('CACHE_REDIS_PORT')
+    CACHE_REDIS_URL = os.environ.get('CACHE_REDIS_URL')
 
     @staticmethod
     def init_app(app):
@@ -31,6 +33,7 @@ class DevConfig(BaseConfig):
 
         
 class ProdConfig(BaseConfig):
+    SECRET_KEY = os.environ.get('SECRET_KEY') if os.environ.get('SECRET_KEY') else None
 
     @classmethod
     def init_app(cls, app):

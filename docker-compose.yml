@@ -1,7 +1,14 @@
 version: '2'
 services:
-  web_api:
+  depth_map_api:
     build: .
+    image: rostegg/depth-map-generation-api
     ports:
       - "5000:5000"
+    container_name: depth_map_api
+    depends_on: 
+      - redis
+
+  redis:
+    image: redis
 

@@ -12,6 +12,7 @@ import numpy as np
 import PIL
 from scipy import misc
 from app.cnns.monodepth.monodepth_bridge import MonodepthBridge as mb
+from app.api.cache import cache
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
@@ -26,6 +27,7 @@ def page_not_found(e):
     return response(400, {'message':'Bad Request error'})
 
 @monodepth_api_v1.route('/<model>', methods=['POST'])
+@cache.cached(timeout=60)
 def process_image(model):
     if model not in mb.AVAILABLE_MODELS:
         return response(404, {'message':'Model not found'})
