@@ -52,12 +52,3 @@ def process_image(model):
 def allowed_extension(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-def brightImage(data):
-    im = PIL.Image.fromarray(data)
-    enhancer = ImageEnhance.Brightness(im)
-    enhanced_im = enhancer.enhance(2.8)
-    imgByteArr = BytesIO()
-    enhanced_im.save(imgByteArr, format='JPG')
-    imgByteArr = imgByteArr.getvalue()
-    return imgByteArr
