@@ -1,7 +1,8 @@
 ## Generate depth map from mono image in one request
 
-REST API based on [monodepth project](https://github.com/mrharicot/monodepth)
+### REST API based on [monodepth project](https://github.com/mrharicot/monodepth)
 
+![](../assets/example.jpeg) ![](../assets/example_depth.png) 
 <!-- TOC depthFrom:1 depthTo:3 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 * [Preamble](#preamble)
@@ -17,7 +18,6 @@ REST API based on [monodepth project](https://github.com/mrharicot/monodepth)
   - [Examples](#examples)
     - [cURL](#curl)
     - [Python](#python)
-
 <!-- /TOC -->
 ## Preamble
 
