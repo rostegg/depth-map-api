@@ -46,8 +46,8 @@ def process_image(model):
             depth_map = mono_bridge.generate_depth_map(model)
         except:
             return response(500, {'message':'unable to process images'})
-        
-        return send_file(depth_map, mimetype='image/png',as_attachment=True, attachment_filename=filename)
+        filename_png = "{}.png".format(filename.rsplit('.',1)[0])
+        return send_file(depth_map, mimetype='image/png',as_attachment=True, attachment_filename=filename_png)
 
 def allowed_extension(filename):
     return '.' in filename and \
