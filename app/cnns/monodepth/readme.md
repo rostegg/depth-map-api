@@ -1,4 +1,4 @@
-# [monodepth] (https://github.com/mrharicot/monodepth)
+# [monodepth](https://github.com/mrharicot/monodepth)
 Tensorflow implementation of unsupervised single image depth prediction using a convolutional neural network.
 
 <p align="center">
