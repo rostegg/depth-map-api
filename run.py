@@ -13,7 +13,7 @@ app.register_blueprint(root_api_v1)
 
 @app.route('/')
 def root():
-    return redirect('/api/v1.0')
+    return redirect('/v1/cnns')
 
 if __name__ == '__main__':
     mb.init_env()
