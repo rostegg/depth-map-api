@@ -16,7 +16,7 @@ from app.api.cache import cache
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
-monodepth_api_v1 = Blueprint(name='monodepth_api_v1', import_name=__name__, url_prefix="/api/v1.0/cnns/monodepth")
+monodepth_api_v1 = Blueprint(name='monodepth_api_v1', import_name=__name__, url_prefix="/v1/cnns/monodepth")
 
 @monodepth_api_v1.route('/')
 def root():
@@ -42,7 +42,6 @@ def process_image(model):
         try:
             img = BytesIO(image.read())
             img.seek(0)
-
             mono_bridge = mb(img)
             depth_map = mono_bridge.generate_depth_map(model)
         except:
