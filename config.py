@@ -15,8 +15,7 @@ except EnvironmentError:
 
 class BaseConfig:
     CACHE_TYPE = os.environ.get('CACHE_TYPE')
-    CACHE_REDIS_HOST = os.environ.get('CACHE_REDIS_HOST')
-    CACHE_REDIS_PORT = os.environ.get('CACHE_REDIS_PORT')
+    # import if use redis cache
     CACHE_REDIS_URL = os.environ.get('CACHE_REDIS_URL')
 
     @staticmethod
