@@ -101,18 +101,18 @@ Return predicted depth map image in `png` format
 * Data params:  
   - Image data with `image` form name, example below.  
   - Supported image formats : `png`, `jpg`, `jpeg`
-* Request example:  
-```
-POST /v1/cnns/monodepth/jitti
-.....Here headings we are not interested in......
-Content-Length: 2740
-Content-Type: multipart/form-data;  boundary=----6PA4QswqtyuhfgxkTrZu0gW
+* Request example:
+  ```
+  POST /v1/cnns/monodepth/kitti
+  .....Here headings we are not interested in......
+  Content-Length: 2740
+  Content-Type: multipart/form-data;  boundary=----6PA4QswqtyuhfgxkTrZu0gW
 
-----6PA4QswqtyuhfgxkTrZu0gW
-Content-Disposition: form-data; name="image"; filename="test.jpg"
-...........Here image data............
-----6PA4QswqtyuhfgxkTrZu0gW
-```
+  ----6PA4QswqtyuhfgxkTrZu0gW
+  Content-Disposition: form-data; name="image"; filename="test.jpg"
+  ...........Here image data............
+  ----6PA4QswqtyuhfgxkTrZu0gW
+  ```
 * Success Response:
   ```
   HTTP/1.0 200 OK
