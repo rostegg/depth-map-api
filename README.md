@@ -62,18 +62,69 @@ def get_optimal_image_size(image):
 | [/](#available-cnns)|GET|Return list of available CNNs|
 | [/v1/cnns](#available-cnns)|GET|Return list of available CNNs|
 | [/v1/cnns/{cnn_name}](#available-models)|GET|Return list of available models for CNN|
-| [/v1/cnns/{cnn_name}/{model}](#depth-map)|POST|Return predicted depth map of image, using selected model|
+| [/v1/cnns/{cnn_name}/{model}](#depth-map)|POST|Return predicted depth map (in `png` format) of image, using selected model|
 
 ### Endpoints 
 
 #### Available CNNs  
-
+Return array of available CNNs with external links to projects
+* URL: [/] or [/v1/cnns]
+* Method: GET
+* Success Response:  
+  - Code: 200  
+  - Content: [{"name": "monodepth", "ext_link": "https://github.com/mrharicot/monodepth"}]
+* Error Response:  
+  - Code: 400
+  - Content: {'message':'Bad Request error'}
+------------------------
 #### Available models
-
+Return array of available models for selected CNN
+* URL: [/v1/cnns/{cnn_name}]
+* Method: GET
+* URL params: 
+  - Required: `cnn_name=string` (received from [GET /v1/cnns](#available-cnns) request in `name` filed)
+* Success Response:  
+  - Code: 200  
+  - Content: ["kitti", "cityscapes", "eigen"]
+* Error Response:  
+  - Code: 400
+  - Content: {'message':'Bad Request error'}
+------------------------
 #### Depth map
+Return predicted depth map image in `png` format
+* URL: [/v1/cnns/{cnn_name}/{model}]
+* Method: POST
+* URL params: 
+  - Required:  
+  `cnn_name=string` (received from [GET /v1/cnns](#available-cnns) request in `name` filed)   
+  `model=string` (received from [GET /v1/cnns/{cnn_name}](#available-models) request)  
+* Data params:  
+  - Image data with `image` form name, example below.  
+  - Supported image formats : `png`, `jpg`, `jpeg`
+* Request example:  
+```
+POST /v1/cnns/monodepth/jitti
+.....Here headings we are not interested in......
+Content-Length: 2740
+Content-Type: multipart/form-data;  boundary=----6PA4QswqtyuhfgxkTrZu0gW
 
+----6PA4QswqtyuhfgxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="test.jpg"
+...........Here image data............
+----6PA4QswqtyuhfgxkTrZu0gW
+```
+* Success Response:
+  ```
+  HTTP/1.0 200 OK
+  Content-Disposition: attachment; filename=cat.png
+  Content-Type: image/png
+  .....Image binary data........
+  ```
+* Error Response:  
+  - Code: 400
+  - Content: {'message':'Bad Request error'}
 ### Examples  
-
+In this section described examples for POST request to generate depth map from image
 #### cURL
 ```
 curl -F 'image=@test.jpg' http://localhost:5000/v1/cnns/monodepth/kitti -o result.png
