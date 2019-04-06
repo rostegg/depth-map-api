@@ -68,7 +68,7 @@ def get_optimal_image_size(image):
 
 #### Available CNNs  
 Return array of available CNNs with external links to projects
-* URL: [/] or [/v1/cnns]
+* URL: / or /v1/cnns
 * Method: GET
 * Success Response:  
   - Code: 200  
@@ -79,7 +79,7 @@ Return array of available CNNs with external links to projects
 ------------------------
 #### Available models
 Return array of available models for selected CNN
-* URL: [/v1/cnns/{cnn_name}]
+* URL: /v1/cnns/{cnn_name}
 * Method: GET
 * URL params: 
   - Required: `cnn_name=string` (received from [GET /v1/cnns](#available-cnns) request in `name` filed)
@@ -92,7 +92,7 @@ Return array of available models for selected CNN
 ------------------------
 #### Depth map
 Return predicted depth map image in `png` format
-* URL: [/v1/cnns/{cnn_name}/{model}]
+* URL: /v1/cnns/{cnn_name}/{model}
 * Method: POST
 * URL params: 
   - Required:  
