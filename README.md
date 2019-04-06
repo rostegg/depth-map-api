@@ -47,7 +47,7 @@ Model also has static input values for the height and width of the image (height
 If GPU is used for calculations, change `self_width` and `self_height` in `monodepth_bridge.py`, or reinit models params for image. You can use method like this, for calculate optimal width and heigh and limit the size of the input image:  
 ```
 # image - BytesIO(image_bytes_arr)
-def get_optimal_image_size(image):
+def get_optimal_image_size(image_bytes):
     input_image = scipy.misc.imread(self.image_bytes, mode="RGB")
     # example for max 1248*960
     width, height, num_channels  = input_image.shape
