@@ -4,6 +4,6 @@ redis
 waitress
 numpy==1.16.2
 Pillow==6.2.0
-tensorflow==1.13.1
+tensorflow==1.15.0
 matplotlib==3.0.3
 scipy==1.2.1
