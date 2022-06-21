@@ -2,7 +2,7 @@ Flask
 Flask-Caching
 redis
 waitress
-numpy==1.16.2
+numpy==1.22.0
 Pillow==8.2.0
 tensorflow==2.5.0
 matplotlib==3.0.3
